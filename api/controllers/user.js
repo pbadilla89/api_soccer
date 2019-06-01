@@ -63,28 +63,24 @@ function login (req, res){
   var email = params.email;
   var password = params.password;
 
-  bcrypt.hash(password, null, null, function(err, hash){
-    console.log(hash);
-  });
-
   User.findOne({email: email}, (err, user) => {
     console.log(err);
     console.log("---");
     console.log(user);
     if(err != null){
-      res.send({mensaje: "oh oh, intentalo de nuevo"});
+      res.send({status: false, mensaje: "se genero un error"});
     }
     if(user != null){
       bcrypt.compare(password, user.password,function(err, check) {
         if(check){
 
-          res.send({mensaje: "muy bien", token: jwt.createToken(user)});
+          res.send({status: true, mensaje: "muy bien", token: jwt.createToken(user)});
         } else {
-          res.send({mensaje: "oh oh, intentalo de nuevo"});
+          res.send({status: false, mensaje: "no coinside la contraseña"});
         }
       });
     } else{
-      res.send({mensaje: "oh oh, intentalo de nuevo"});
+      res.send({status: false, mensaje: "no existe el usuario"});
     }
   });
 }
