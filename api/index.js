@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
 app.use('/api',routes);
 
-setTimeout(function() {
+// setTimeout(function() {
   mongoose.connect('mongodb://'+config_db.host+':'+config_db.port+'/'+config_db.name, {}, (err,res) => {
     if(err){
       console.log("intentando conectar",err);
@@ -39,7 +39,7 @@ setTimeout(function() {
       console.log("intentando conectar",res);
     }
   })
-}, 20000);
+// }, 20000);
 
 app.listen(2889, () =>
   console.log('Example app listening on port 2003')
