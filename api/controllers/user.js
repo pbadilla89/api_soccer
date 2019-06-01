@@ -71,14 +71,21 @@ function login (req, res){
     console.log(err);
     console.log("---");
     console.log(user);
-    bcrypt.compare(password, user.password,function(err, check) {
-      if(check){
+    if(typeof error != "undefined"){
+      res.send({mensaje: "oh oh, intentalo de nuevo"});
+    }
+    if(typeof user != "undefined"){
+      bcrypt.compare(password, user.password,function(err, check) {
+        if(check){
 
-        res.send({mensaje: "muy bien", token: jwt.createToken(user)});
-      } else {
-        res.send({mensaje: "oh oh, intentalo de nuevo"});
-      }
-    });
+          res.send({mensaje: "muy bien", token: jwt.createToken(user)});
+        } else {
+          res.send({mensaje: "oh oh, intentalo de nuevo"});
+        }
+      });
+    } else{
+      res.send({mensaje: "oh oh, intentalo de nuevo"});
+    }
   });
 }
 
