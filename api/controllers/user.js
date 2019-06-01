@@ -44,17 +44,14 @@ function update (req, res){
   var update = req.body;
 
   User.findByIdAndUpdate(id,update, (err, userUpload) => {
-    console.log(userUpload);
+    res.send({editado: true});
   })
 }
 
 function remove (req, res){
-  console.log(req.body)
   var id = req.body._id;
-  console.log(id)
 
   User.findByIdAndRemove(id, (err, userUpload) => {
-    console.log(userUpload);
     res.send({eliminado: true});
   })
 }
