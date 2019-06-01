@@ -58,19 +58,11 @@ function remove (req, res){
 
 function login (req, res){
   var params = req.body;
-  console.log(params);
 
   var email = params.email;
   var password = params.password;
 
-  bcrypt.hash(password, null, null, function(err, hash){
-    console.log(hash);
-  });
-
   User.findOne({email: email}, (err, user) => {
-    console.log(err);
-    console.log("---");
-    console.log(user);
     bcrypt.compare(password, user.password,function(err, check) {
       if(check){
 
