@@ -71,10 +71,10 @@ function login (req, res){
     console.log(err);
     console.log("---");
     console.log(user);
-    if(typeof error != "undefined"){
+    if(error != null){
       res.send({mensaje: "oh oh, intentalo de nuevo"});
     }
-    if(typeof user != "undefined"){
+    if(user != null){
       bcrypt.compare(password, user.password,function(err, check) {
         if(check){
 
