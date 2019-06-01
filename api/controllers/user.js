@@ -55,7 +55,7 @@ function remove (req, res){
 
   User.findByIdAndRemove(id, (err, userUpload) => {
     console.log(userUpload);
-    res.send(useuserUploadrs);
+    res.send({eliminado: true});
   })
 }
 
