@@ -71,7 +71,7 @@ function login (req, res){
     console.log(err);
     console.log("---");
     console.log(user);
-    if(error != null){
+    if(err != null){
       res.send({mensaje: "oh oh, intentalo de nuevo"});
     }
     if(user != null){
