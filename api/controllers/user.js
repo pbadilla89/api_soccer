@@ -58,6 +58,7 @@ function remove (req, res){
 
 function login (req, res){
   var params = req.body;
+  console.log(params)
 
   var email = params.email;
   var password = params.password;
