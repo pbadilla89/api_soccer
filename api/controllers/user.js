@@ -91,4 +91,4 @@ module.exports = {
   update,
   list,
   remove
-};
+}

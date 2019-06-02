@@ -28,6 +28,32 @@ exports.validarToken = function(req,res,next){
       return res.send({message: "cuek"});
     }
 
-    next();
+    next()
   }
-};
+}
+
+const validateSession = (req, res) => {
+  const params = req.body;
+  if(!params.auth){
+    res.send({status: false, message: "No se ha enviado el token"});
+  } else {
+
+    try{
+      
+      var token = params.auth.replace(/['"]+/g,'');
+      var validate = jwt.decode(token,secret);
+
+      if(validate.exp > moment().unix()){
+        res.send({status: false, message: "el token ya expiro"});
+      } else {
+        res.send({status: true, message: "el token es valido"});
+      }
+    } catch(e){
+      res.send({status: false, message: "se genero un error"});
+    }
+  }
+}
+
+module.exports = {
+  validateSession
+}
