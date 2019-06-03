@@ -66,18 +66,12 @@ function login (req, res){
   var password = params.password;
 
   User.findOne({email: email}, (err, user) => {
-    console.log(err);
-    console.log("---");
-    console.log(user);
     if(err != null){
       res.send({status: false, mensaje: "se genero un error"});
     }
     if(user != null){
       bcrypt.compare(password, user.password,function(err, check) {
         if(check){
-          console.log("*****************")
-          console.log(jwt)
-          console.log("*****************")
           res.send({status: true, mensaje: "muy bien", token: jwt.createToken(user)});
         } else {
           res.send({status: false, mensaje: "no coinside la contraseña"});
