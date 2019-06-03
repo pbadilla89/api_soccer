@@ -1,6 +1,7 @@
 'use strict'
 
 var League = require('../models/leagues');
+var Country = require('../models/countries');
 
 function list(req, res) {
   League.find({}).
@@ -9,7 +10,13 @@ function list(req, res) {
     if(err){
       res.send({datos: "error"});
     }
-    res.send({leagues})
+    Country.find({}).
+    exec((err, countries) => {
+      if(err){
+        res.send({datos: "error"});
+      }
+      res.send({leagues, countries})
+    });
   });
 }
 function add(req, res) {
