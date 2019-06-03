@@ -4,11 +4,11 @@ var Country = require('../models/countries');
 
 function list(req, res) {
   Country.find({}).
-  exec((err, Countries) => {
+  exec((err, countries) => {
     if(err){
       res.send({datos: "error"});
     }
-    res.send({Countries})
+    res.send({countries})
   });
 }
 function add(req, res) {
