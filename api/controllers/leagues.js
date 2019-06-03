@@ -5,7 +5,7 @@ var Country = require('../models/countries');
 
 function list(req, res) {
   League.find({}).
-  populate("league_id")
+  populate("league_id").
   exec((err, leagues) => {
     if(err){
       res.send({datos: "error"});
