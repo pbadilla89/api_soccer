@@ -27,13 +27,15 @@ function add(req, res) {
 
   if(params.password){
     bcrypt.hash(params.password, null, null, function(err, hash){
+      if ( err ) res.send({status: false, mensaje: "Se genero un error"});
       console.log("va a guardar")
       console.log(hash)
       user.password = hash;
-      user.save((err, usr) => {
+      user.save((err2, usr) => {
+        if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
         console.log("guardo")
         let users = [ usr ]
-        res.send({users});
+        res.send({status: true, mensaje: "Se Guardo Correctamente",users});
       });
     });
   }
@@ -73,7 +75,9 @@ function login (req, res){
     if(user != null){
       bcrypt.compare(password, user.password,function(err, check) {
         if(check){
-
+          console.log("*****************")
+          console.log(jwt)
+          console.log("*****************")
           res.send({status: true, mensaje: "muy bien", token: jwt.createToken(user)});
         } else {
           res.send({status: false, mensaje: "no coinside la contraseña"});
@@ -85,10 +89,28 @@ function login (req, res){
   });
 }
 
+
+const validateSession = (req, res) => {
+  const params = req.body;
+  if(!params.auth){
+    res.send({status: false, message: "No se ha enviado el token"});
+  } else { 
+    var token = params.auth.replace(/['"]+/g,'')
+    var validate = jwt.validarToken(token)
+
+    if(!validate){
+      res.send({status: false, message: "el token ya expiro"});
+    } else {
+      res.send({status: true, message: "el token es valido"});
+    }
+  }
+}
+
 module.exports = {
   login,
   add,
   update,
   list,
-  remove
+  remove,
+  validateSession
 }

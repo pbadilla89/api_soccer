@@ -8,9 +8,9 @@ exports.createToken = function(user){
   user.iat = moment().unix();
   user.exp = moment().add(30,'days').unix();
   return jwt.encode(user, secret);
-};
+}
 
-exports.validarToken = function(req,res,next){
+exports.midValidarToken = function(req,res,next){
   if(!req.headers.auth){
     console.log("no tiene cabecera");
   } else {
@@ -32,28 +32,15 @@ exports.validarToken = function(req,res,next){
   }
 }
 
-const validateSession = (req, res) => {
-  const params = req.body;
-  if(!params.auth){
-    res.send({status: false, message: "No se ha enviado el token"});
-  } else {
+exports.validarToken = function(token){
+  try{
+    var validate = jwt.decode(token,secret);
 
-    try{
-      
-      var token = params.auth.replace(/['"]+/g,'');
-      var validate = jwt.decode(token,secret);
-
-      if(validate.exp > moment().unix()){
-        res.send({status: false, message: "el token ya expiro"});
-      } else {
-        res.send({status: true, message: "el token es valido"});
-      }
-    } catch(e){
-      res.send({status: false, message: "se genero un error"});
+    if(validate.exp > moment().unix()){
+      return false
     }
+    return true
+  } catch(e){
+    return false
   }
-}
-
-module.exports = {
-  validateSession
 }

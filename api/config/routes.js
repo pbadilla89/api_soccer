@@ -13,6 +13,6 @@ api.post('/addUser',UserController.add)
 api.post('/loginUser',UserController.login)
 api.post('/removeUser',UserController.remove)
 api.post('/listUsers',UserController.list)
-api.post('/validateSession',md_auth.validateSession)
+api.post('/validateSession',UserController.validateSession)
 
 module.exports = api
