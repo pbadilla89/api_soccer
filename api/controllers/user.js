@@ -92,10 +92,10 @@ function login (req, res){
 
 const validateSession = (req, res) => {
   const params = req.body;
-  if(!params.auth){
+  if(!params.token){
     res.send({status: false, message: "No se ha enviado el token"});
   } else { 
-    var token = params.auth.replace(/['"]+/g,'')
+    var token = params.token.replace(/['"]+/g,'')
     var validate = jwt.validarToken(token)
 
     if(!validate){
