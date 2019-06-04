@@ -71,7 +71,6 @@ function add(req, res) {
           }
 
           Team.findByIdAndUpdate(id,newTms, (err, userUpload) => {
-            res.send({editado: true});
           })
       })
 
