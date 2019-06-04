@@ -22,11 +22,14 @@ function list(req, res) {
       res.send({datos: "error"});
     }
     Team.find({}).
+    populate("country").
+    populate("league").
     exec((err, teams) => {
       if(err){
         res.send({datos: "error"});
       }
       League.find({}).
+      populate("country").
       exec((err, leagues) => {
         if(err){
           res.send({datos: "error"});
