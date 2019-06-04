@@ -31,7 +31,7 @@ api.post('/removeTeam',TeamController.remove)
 api.post('/listTeams',TeamController.list)
 
 api.post('/addMatch',MatchController.add)
-api.post('/listMatch',MatchController.list)
+api.post('/listMatches',MatchController.list)
 
 api.post('/loginUser',UserController.login)
 api.post('/validateSession',UserController.validateSession)
