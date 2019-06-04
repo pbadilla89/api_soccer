@@ -6,7 +6,7 @@ var schema = mongoose.Schema;
 
 var LeagueSchema = schema({
   name: String,
-  country_id: {
+  country: {
     type: schema.ObjectId,
     ref: 'Country'
   },
