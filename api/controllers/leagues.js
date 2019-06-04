@@ -5,7 +5,7 @@ var Country = require('../models/countries');
 
 function list(req, res) {
   League.find({}).
-  populate("league_id").
+  populate("country").
   exec((err, leagues) => {
     if(err){
       res.send({datos: "error"});
@@ -20,12 +20,13 @@ function list(req, res) {
   });
 }
 function add(req, res) {
-  var country = new League()
+  var league = new League()
   var params = req.body
 
-  country.name = params.name
+  league.name = params.name
+  league.country = params.country
 
-  country.save((err2, cnt) => {
+  league.save((err2, cnt) => {
     if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
     console.log("guardo")
     let leagues = [ cnt ]
