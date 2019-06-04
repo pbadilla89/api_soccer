@@ -24,6 +24,10 @@ function list(req, res) {
     Team.find({}).
     populate("country").
     populate("league").
+    .populate({
+      path: 'league.country',
+      model: 'Country'
+    }).
     exec((err, teams) => {
       if(err){
         res.send({datos: "error"});
