@@ -6,11 +6,10 @@ var schema = mongoose.Schema;
 
 var TeamSchema = schema({
   name: String,
-  country_id: {
+  country: {
     type: schema.ObjectId,
     ref: 'Country'
   },
-  pos: Number,
   pts: Number,
   country: String,
   league: String,
@@ -18,7 +17,7 @@ var TeamSchema = schema({
   pg: Number,
   pe: Number,
   pp: Number,
-  league_id: {
+  league: {
     type: schema.ObjectId,
     ref: 'League'
   },

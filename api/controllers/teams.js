@@ -1,14 +1,30 @@
 'use strict'
 
 var Team = require('../models/teams');
+var Country = require('../models/countries');
+var League = require('../models/leagues');
 
 function list(req, res) {
   Team.find({}).
+  populate("country").
+  populate("league").
   exec((err, teams) => {
     if(err){
       res.send({datos: "error"});
     }
-    res.send({teams})
+    Country.find({}).
+    exec((err, countries) => {
+      if(err){
+        res.send({datos: "error"});
+      }
+      League.find({}).
+      exec((err, leagues) => {
+        if(err){
+          res.send({datos: "error"});
+        }
+        res.send({teams, countries, leagues})
+      });
+    });
   });
 }
 function add(req, res) {
