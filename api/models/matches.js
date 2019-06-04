@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var schema = mongoose.Schema;
 
-var TeamSchema = schema({
+var MatchSchema = schema({
   name: String,
   win: String,
   idHome: {
@@ -21,4 +21,4 @@ var TeamSchema = schema({
   }
 });
 
-module.exports = mongoose.model('Team',TeamSchema);
+module.exports = mongoose.model('Match',MatchSchema);
