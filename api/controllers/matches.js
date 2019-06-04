@@ -23,7 +23,7 @@ function list(req, res) {
     }
     Team.find({}).
     populate("country").
-    populate("league").
+    populate("league")
     .populate({
       path: 'league.country',
       model: 'Country'
