@@ -32,6 +32,13 @@ function add(req, res) {
   var params = req.body
 
   country.name = params.name
+  country.country = params.country
+  country.League = params.league
+  country.pts = 0
+  country.pj = 0
+  country.pg = 0
+  country.pe = 0
+  country.pp = 0
 
   country.save((err2, cnt) => {
     if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});

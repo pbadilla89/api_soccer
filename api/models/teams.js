@@ -11,8 +11,6 @@ var TeamSchema = schema({
     ref: 'Country'
   },
   pts: Number,
-  country: String,
-  league: String,
   pj: Number,
   pg: Number,
   pe: Number,
