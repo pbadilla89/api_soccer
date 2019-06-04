@@ -6,8 +6,16 @@ var League = require('../models/leagues');
 
 function list(req, res) {
   Match.find({}).
-  populate("idHome").
-  populate("idAway").
+  populate("idHome")
+  .populate({
+    path: 'idHome.country',
+    model: 'Country'
+  }).
+  populate("idAway")
+  .populate({
+    path: 'idAway.country',
+    model: 'Country'
+  }).
   populate("league").
   exec((err, matches) => {
     if(err){
