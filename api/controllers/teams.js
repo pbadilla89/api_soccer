@@ -33,7 +33,7 @@ function add(req, res) {
 
   country.name = params.name
   country.country = params.country
-  country.League = params.league
+  country.league = params.league
   country.pts = 0
   country.pj = 0
   country.pg = 0
