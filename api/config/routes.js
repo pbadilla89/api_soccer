@@ -5,6 +5,7 @@ var UserController = require('../controllers/user')
 var CountryController = require('../controllers/countries')
 var LeagueController = require('../controllers/leagues')
 var TeamController = require('../controllers/teams')
+var MatchController = require('../controllers/matches')
 
 var multipart = require('connect-multiparty')
 var md_upload_excel = multipart({uploadDir: './uploads/'})
@@ -28,6 +29,9 @@ api.post('/listLeagues',LeagueController.list)
 api.post('/addTeam',TeamController.add)
 api.post('/removeTeam',TeamController.remove)
 api.post('/listTeams',TeamController.list)
+
+api.post('/addMatch',MatchController.add)
+api.post('/listMatch',MatchController.list)
 
 api.post('/loginUser',UserController.login)
 api.post('/validateSession',UserController.validateSession)

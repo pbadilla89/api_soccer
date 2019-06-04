@@ -28,19 +28,19 @@ function list(req, res) {
   });
 }
 function add(req, res) {
-  var country = new Team()
+  var team = new Team()
   var params = req.body
 
-  country.name = params.name
-  country.country = params.country
-  country.league = params.league
-  country.pts = 0
-  country.pj = 0
-  country.pg = 0
-  country.pe = 0
-  country.pp = 0
+  team.name = params.name
+  team.country = params.country
+  team.league = params.league
+  team.pts = 0
+  team.pj = 0
+  team.pg = 0
+  team.pe = 0
+  team.pp = 0
 
-  country.save((err2, cnt) => {
+  team.save((err2, cnt) => {
     if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
     console.log("guardo")
     let teams = [ cnt ]
