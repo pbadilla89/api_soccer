@@ -3,6 +3,7 @@
 var Team = require('../models/teams');
 var Country = require('../models/countries');
 var League = require('../models/leagues');
+var Match = require('../models/matches');
 
 function list(req, res) {
   Team.find({}).
@@ -42,9 +43,68 @@ function add(req, res) {
 
   team.save((err2, cnt) => {
     if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
-    console.log("guardo")
-    let teams = [ cnt ]
-    res.send({status: true, mensaje: "Se Guardo Correctamente",teams});
+    
+    League.find({}).
+    exec((err, leagues) => {
+      if(err){
+        res.send({datos: "error"});
+      }
+      Team.find({}).
+      exec((err, teams) => {
+        if(err){
+          res.send({datos: "error"});
+        }
+
+        teams = teams.map( ( tms, indTms ) => {
+          
+          const id = tms._id
+
+          const newTms = {
+              name: tms.name,
+              country: tms.country,
+              league: tms.league,
+              pts: 0,
+              pj: 0,
+              pg: 0,
+              pe: 0,
+              pp: 0
+          }
+
+          Team.findByIdAndUpdate(id,newTms, (err, userUpload) => {
+            res.send({editado: true});
+          })
+      })
+
+        Match.remove({})
+        for(let indLeg = 0; indLeg < leagues.length; indLeg++){
+          let newTeams = teams.filter( (tms) => tms.league === leagues[indLeg].id )
+          for(let indTms = 0; indTms < newTeams.length; indTms++){
+            let tms = newTeams[indTms]
+            for(let indTms2 = 0; indTms2 < newTeams.length; indTms2++){
+              let tms2 = newTeams[indTms2]
+              let founded = tms.id === tms2.id? true : false
+    
+              if(!founded){
+                let matches2 = new Match()
+                matches2.idHome = tms._id
+                matches2.idAway = tms2._id
+                matches2.win = "-1"
+                matches2.league = leagues[indLeg]._id
+                matches2.
+
+                team.save((err2, cnt) => {
+                  if ( err2 ) res.send({status: false, mensaje: "Se genero un error"})
+                })
+              }
+            }
+          }
+          if(indLeg === leagues.length-1){
+            let teams = [ cnt ]
+            res.send({status: true, mensaje: "Se Guardo Correctamente",teams});
+          }
+        }
+      });
+    });
   });
 }
 
