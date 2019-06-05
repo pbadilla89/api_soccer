@@ -92,7 +92,7 @@ function add(req, res) {
           console.log("va a guardar92",teams)
           console.log("va a guardar93",leagues[indLeg]["_id"])
 
-          let newTeams = myFilter(teams, "league", leagues[indLeg]["_id"])
+          let newTeams = teams.filter( tms => String(tms.league) === String(leagues[indLeg]["_id"]) )
           console.log("va a guardar10", newTeams)
           for(let indTms = 0; indTms < newTeams.length; indTms++){
             let tms = newTeams[indTms]
@@ -101,6 +101,8 @@ function add(req, res) {
               let tms2 = newTeams[indTms2]
               console.log("va a guardar12")
               let founded = tms._id === tms2._id? true : false
+
+              console.log("va a guardar12-2")
     
               if(!founded){
                 let matches2 = new Match()
@@ -123,23 +125,6 @@ function add(req, res) {
       });
     });
   });
-}
-
-function myFilter(array, cross, valid){
-  let newArray = []
-  for(let indAry = 0; indAry < array.length; indAry++){
-    const ary = array[indAry]
-
-    console.log(cross)
-    console.log(typeof String(ary[cross]))
-    console.log(String(ary[cross]) == String(valid))
-    console.log(typeof String(valid))
-
-    if(String(ary[cross]) == String(valid)){
-      newArray.push(ary[cross])
-    }
-  }
-  return newArray
 }
 
 function update (req, res){
