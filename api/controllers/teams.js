@@ -134,7 +134,7 @@ function myFilter(array, cross, valid){
     console.log(ary[cross])
     console.log(valid)
 
-    if(ary[cross] === valid){
+    if(ary[cross] == valid){
       newArray.push(ary[cross])
     }
   }
