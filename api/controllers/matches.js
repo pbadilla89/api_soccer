@@ -59,7 +59,7 @@ function playMatch(req, res){
   }
 
   Match.findByIdAndUpdate(match._id, match2, (err, mth) => {
-    if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
+    if ( err ) res.send({status: false, mensaje: "Se genero un error"});
 
     const newHome = {
       pj: match.win === match.idHome._id ? match.idHome.pj+1 : match.idHome.pj,
@@ -70,27 +70,31 @@ function playMatch(req, res){
     }
 
     console.log(match.idHome._id)
-    console.log({ ...match.idHome, ...newHome })
+    console.log(match.idHome)
+    console.log(newHome )
 
-    Team.findByIdAndUpdate(match.idHome._id,{ ...match.idHome, ...newHome }, (err, userUpload) => {
+    // Team.findByIdAndUpdate(match.idHome._id,{ ...match.idHome, ...newHome }, (err2, userUpload) => {
+    //   if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
 
-      const newAway = {
-        pj: match.win === match.idAway._id ? match.idAway.pj+1 : match.idAway.pj,
-        pe: match.win === "0" ? match.idAway.pe+1 : match.idAway.pe,
-        pg: match.win === match.idAway._id ? match.idAway.pg+1 : match.idAway.pg,
-        pp: match.win === match.idHome._id ? match.idAway.pp+1 : match.idAway.pp,
-        pts: match.win === match.idAway._id ? match.idAway.pts+3 : match.win === "0" ? match.idAway.pts+1 : match.idAway.pts,
-      }
+    //   const newAway = {
+    //     pj: match.win === match.idAway._id ? match.idAway.pj+1 : match.idAway.pj,
+    //     pe: match.win === "0" ? match.idAway.pe+1 : match.idAway.pe,
+    //     pg: match.win === match.idAway._id ? match.idAway.pg+1 : match.idAway.pg,
+    //     pp: match.win === match.idHome._id ? match.idAway.pp+1 : match.idAway.pp,
+    //     pts: match.win === match.idAway._id ? match.idAway.pts+3 : match.win === "0" ? match.idAway.pts+1 : match.idAway.pts,
+    //   }
 
-      console.log(match.idAway._id)
-      console.log({ ...match.idAway, ...newAway })
+    //   console.log(match.idAway._id)
+    //   console.log({ ...match.idAway, ...newAway })
 
-      Team.findByIdAndUpdate(match.idAway._id,{ ...match.idAway, ...newAway }, (err, userUpload) => {
-        res.send({status: true, mensaje: "Se Guardo Correctamente"});
-      })
+    //   Team.findByIdAndUpdate(match.idAway._id,{ ...match.idAway, ...newAway }, (err3, userUpload) => {
+    //     if ( err3 ) res.send({status: false, mensaje: "Se genero un error"});
+
+    //     res.send({status: true, mensaje: "Se Guardo Correctamente"});
+    //   })
 
       
-    })
+    // })
 
   } )
   
