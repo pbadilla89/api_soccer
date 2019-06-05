@@ -60,11 +60,11 @@ function playMatch(req, res){
     if ( err ) res.send({status: false, mensaje: "Se genero un error"});
 
     const newHome = {
-      pj: match.win === match.idHome._id ? match.idHome.pj+1 : match.idHome.pj,
-      pe: match.win === "0" ? match.idHome.pe+1 : match.idHome.pe,
-      pg: match.win === match.idHome._id ? match.idHome.pg+1 : match.idHome.pg,
-      pp: match.win === match.idAway._id ? match.idHome.pp+1 : match.idHome.pp,
-      pts: match.win === match.idHome._id ? match.idHome.pts+3 : match.win === "0" ? match.idHome.pts+1 : match.idHome.pts,
+      pj: String(match.win) === String(match.idHome._id) ? match.idHome.pj+1 : match.idHome.pj,
+      pe: String(match.win) === "0" ? match.idHome.pe+1 : match.idHome.pe,
+      pg: String(match.win) === String(match.idHome._id) ? match.idHome.pg+1 : match.idHome.pg,
+      pp: String(match.win) === String(match.idAway._id) ? match.idHome.pp+1 : match.idHome.pp,
+      pts: String(match.win) === String(match.idHome._id) ? match.idHome.pts+3 : match.win === "0" ? match.idHome.pts+1 : match.idHome.pts,
     }
 
     console.log("*******************")
@@ -79,11 +79,11 @@ function playMatch(req, res){
       if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
 
       const newAway = {
-        pj: match.win === match.idAway._id ? match.idAway.pj+1 : match.idAway.pj,
-        pe: match.win === "0" ? match.idAway.pe+1 : match.idAway.pe,
-        pg: match.win === match.idAway._id ? match.idAway.pg+1 : match.idAway.pg,
-        pp: match.win === match.idHome._id ? match.idAway.pp+1 : match.idAway.pp,
-        pts: match.win === match.idAway._id ? match.idAway.pts+3 : match.win === "0" ? match.idAway.pts+1 : match.idAway.pts,
+        pj: String(match.win) === String(match.idAway._id) ? match.idAway.pj+1 : match.idAway.pj,
+        pe: String(match.win) === "0" ? match.idAway.pe+1 : match.idAway.pe,
+        pg: String(match.win) === String(match.idAway._id) ? match.idAway.pg+1 : match.idAway.pg,
+        pp: String(match.win) === match.idHome._id ? match.idAway.pp+1 : match.idAway.pp,
+        pts: String(match.win) === String(match.idAway._id) ? match.idAway.pts+3 : match.win === "0" ? match.idAway.pts+1 : match.idAway.pts,
       }
 
       console.log("*******************2")
