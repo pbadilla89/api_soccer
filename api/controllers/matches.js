@@ -48,8 +48,6 @@ function playMatch(req, res){
 
   const { match } = req.body
 
-  console.log(match)
-
   const match2 = {
     name: match.name,
     win: match.win,
@@ -69,6 +67,14 @@ function playMatch(req, res){
       pts: match.win === match.idHome._id ? match.idHome.pts+3 : match.win === "0" ? match.idHome.pts+1 : match.idHome.pts,
     }
 
+    console.log("*******************")
+    console.log(match.idHome._id)
+    console.log("*******************")
+    console.log(match.idHome)
+    console.log("*******************")
+    console.log(newHome )
+    console.log("*******************")
+
     Team.findByIdAndUpdate(match.idHome._id,{ ...match.idHome, ...newHome }, (err2, userUpload) => {
       if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
 
@@ -80,8 +86,13 @@ function playMatch(req, res){
         pts: match.win === match.idAway._id ? match.idAway.pts+3 : match.win === "0" ? match.idAway.pts+1 : match.idAway.pts,
       }
 
+      console.log("*******************2")
       console.log(match.idAway._id)
-      console.log({ ...match.idAway, ...newAway })
+      console.log("*******************2")
+      console.log(match.idAway)
+      console.log("*******************2")
+      console.log(newAway )
+      console.log("*******************2")
 
       Team.findByIdAndUpdate(match.idAway._id,{ ...match.idAway, ...newAway }, (err3, userUpload) => {
         if ( err3 ) res.send({status: false, mensaje: "Se genero un error"});
