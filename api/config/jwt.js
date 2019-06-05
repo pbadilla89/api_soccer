@@ -11,14 +11,13 @@ exports.createToken = function(user){
 }
 
 exports.midValidarToken = function(req,res,next){
-  console.log(req.headers)
-  if(!req.headers.token){
+  if(!req.headers.auth){
     return res.send({status: false, message: "no tiene token de AUTH"});
   } else {
 
     try{
       
-      var token = req.headers.token.replace(/['"]+/g,'');
+      var token = req.headers.auth.replace(/['"]+/g,'');
       var validate = jwt.decode(token,secret);
 
       if(validate.exp > moment().unix()){
