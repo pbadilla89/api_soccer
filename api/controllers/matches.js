@@ -50,7 +50,7 @@ function playMatch(req, res){
 
   const match2 = {
     name: match.name,
-    win: match.win,
+    win: match[match.win]._id,
     idHome: match.idHome._id,
     idAway: match.idAway._id,
     league: match.league._id
@@ -60,7 +60,7 @@ function playMatch(req, res){
     if ( err ) res.send({status: false, mensaje: "Se genero un error"});
 
     const newHome = {
-      pj: String(match.win) === "idHome" ? match.idHome.pj+1 : match.idHome.pj,
+      pj: match.idHome.pj+1,
       pe: String(match.win) === "0" ? match.idHome.pe+1 : match.idHome.pe,
       pg: String(match.win) === "idHome" ? match.idHome.pg+1 : match.idHome.pg,
       pp: String(match.win) === "idAway" ? match.idHome.pp+1 : match.idHome.pp,
@@ -81,7 +81,7 @@ function playMatch(req, res){
       if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
 
       const newAway = {
-        pj: String(match.win) === "idAway" ? match.idAway.pj+1 : match.idAway.pj,
+        pj: match.idAway.pj+1,
         pe: String(match.win) === "0" ? match.idAway.pe+1 : match.idAway.pe,
         pg: String(match.win) === "idAway" ? match.idAway.pg+1 : match.idAway.pg,
         pp: String(match.win) === "idHome" ? match.idAway.pp+1 : match.idAway.pp,
