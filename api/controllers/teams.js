@@ -130,6 +130,10 @@ function myFilter(array, cross, valid){
   for(let indAry = 0; indAry < array.length; indAry++){
     const ary = array[indAry]
 
+    console.log(cross)
+    console.log(ary[cross])
+    console.log(valid)
+
     if(ary[cross] === valid){
       newArray.push(ary[cross])
     }
