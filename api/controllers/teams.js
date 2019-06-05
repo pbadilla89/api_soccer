@@ -102,15 +102,22 @@ function add(req, res) {
               console.log("va a guardar12")
               let founded = tms._id === tms2._id? true : false
 
-              console.log("va a guardar12-2",founded)
+              
     
               if(!founded){
+                console.log("va a guardar12-2")
                 let matches2 = new Match()
+                console.log("va a guardar12-3")
                 matches2.idHome = tms._id
+                console.log("va a guardar12-4")
                 matches2.idAway = tms2._id
+                console.log("va a guardar12-5")
                 matches2.win = "-1"
+                console.log("va a guardar12-6")
                 matches2.league = leagues[indLeg]._id
+                console.log("va a guardar12-7")
                 matches2.save((err2, cnt) => {
+                  console.log("va a guardar12-8")
                   if ( err2 ) res.send({status: false, mensaje: "Se genero un error"})
                 })
               }
