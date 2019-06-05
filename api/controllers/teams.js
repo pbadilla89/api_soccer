@@ -87,48 +87,37 @@ function add(req, res) {
       })
 
         // Match.deleteMany({})
-        console.log("va a guardar9")
-        for(let indLeg = 0; indLeg < leagues.length; indLeg++){
-          console.log("va a guardar92",teams)
-          console.log("va a guardar93",leagues[indLeg]["_id"])
+        Match.deleteMany({ }, (err,mth) => {
+        
+          for(let indLeg = 0; indLeg < leagues.length; indLeg++){
 
-          let newTeams = teams.filter( tms => String(tms.league) === String(leagues[indLeg]["_id"]) )
-          console.log("va a guardar10", newTeams)
-          for(let indTms = 0; indTms < newTeams.length; indTms++){
-            let tms = newTeams[indTms]
-            console.log("va a guardar11")
-            for(let indTms2 = 0; indTms2 < newTeams.length; indTms2++){
-              let tms2 = newTeams[indTms2]
-              console.log("va a guardar12")
-              let founded = tms._id === tms2._id? true : false
+            let newTeams = teams.filter( tms => String(tms.league) === String(leagues[indLeg]["_id"]) )
+            for(let indTms = 0; indTms < newTeams.length; indTms++){
+              let tms = newTeams[indTms]
+              for(let indTms2 = 0; indTms2 < newTeams.length; indTms2++){
+                let tms2 = newTeams[indTms2]
+                let founded = tms._id === tms2._id? true : false
 
-              
-    
-              if(!founded){
-                console.log("va a guardar12-2")
-                let matches2 = new Match()
-                console.log("va a guardar12-3")
-                matches2.idHome = tms._id
-                console.log("va a guardar12-4")
-                matches2.idAway = tms2._id
-                console.log("va a guardar12-5")
-                matches2.win = "-1"
-                console.log("va a guardar12-6")
-                matches2.league = leagues[indLeg]._id
-                console.log("va a guardar12-7")
-                matches2.save((err2, cnt) => {
-                  console.log("va a guardar12-8")
-                  if ( err2 ) res.send({status: false, mensaje: "Se genero un error"})
-                })
+                
+      
+                if(!founded){
+                  let matches2 = new Match()
+                  matches2.idHome = tms._id
+                  matches2.idAway = tms2._id
+                  matches2.win = "-1"
+                  matches2.league = leagues[indLeg]._id
+                  matches2.save((err2, cnt) => {
+                    if ( err2 ) res.send({status: false, mensaje: "Se genero un error"})
+                  })
+                }
               }
             }
+            if(indLeg === leagues.length-1){
+              let teams = [ cnt ]
+              res.send({status: true, mensaje: "Se Guardo Correctamente",teams});
+            }
           }
-          if(indLeg === leagues.length-1){
-            console.log("va a guardar13")
-            let teams = [ cnt ]
-            res.send({status: true, mensaje: "Se Guardo Correctamente",teams});
-          }
-        }
+        });
       });
     });
   });
