@@ -12,7 +12,7 @@ exports.createToken = function(user){
 
 exports.midValidarToken = function(req,res,next){
   if(!req.headers.auth){
-    console.log("no tiene cabecera");
+    return res.send({message: "no tiene token de AUTH"});
   } else {
 
     try{
