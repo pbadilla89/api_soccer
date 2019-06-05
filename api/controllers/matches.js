@@ -68,6 +68,10 @@ function playMatch(req, res){
       pp: match.win === match.idAway._id ? match.idHome.pp+1 : match.idHome.pp,
       pts: match.win === match.idHome._id ? match.idHome.pts+3 : match.win === "0" ? match.idHome.pts+1 : match.idHome.pts,
     }
+
+    console.log(match.idHome._id)
+    console.log({ ...match.idHome, ...newHome })
+
     Team.findByIdAndUpdate(match.idHome._id,{ ...match.idHome, ...newHome }, (err, userUpload) => {
 
       const newAway = {
@@ -77,6 +81,10 @@ function playMatch(req, res){
         pp: match.win === match.idHome._id ? match.idAway.pp+1 : match.idAway.pp,
         pts: match.win === match.idAway._id ? match.idAway.pts+3 : match.win === "0" ? match.idAway.pts+1 : match.idAway.pts,
       }
+
+      console.log(match.idAway._id)
+      console.log({ ...match.idAway, ...newAway })
+
       Team.findByIdAndUpdate(match.idAway._id,{ ...match.idAway, ...newAway }, (err, userUpload) => {
         res.send({status: true, mensaje: "Se Guardo Correctamente"});
       })
