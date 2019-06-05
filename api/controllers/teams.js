@@ -59,7 +59,7 @@ function add(req, res) {
       Team.find({}).
       exec((err, teams) => {
         if(err){
-          res.send({datos: "error4"});
+          res.send({datos: "error"});
         }
 
         console.log("va a guardar5")
@@ -86,13 +86,17 @@ function add(req, res) {
           console.log("va a guardar8")
       })
 
-        Match.remove({})
+        Match.deleteMany({})
+        console.log("va a guardar9")
         for(let indLeg = 0; indLeg < leagues.length; indLeg++){
           let newTeams = teams.filter( (tms) => tms.league === leagues[indLeg].id )
+          console.log("va a guardar10")
           for(let indTms = 0; indTms < newTeams.length; indTms++){
             let tms = newTeams[indTms]
+            console.log("va a guardar11")
             for(let indTms2 = 0; indTms2 < newTeams.length; indTms2++){
               let tms2 = newTeams[indTms2]
+              console.log("va a guardar12")
               let founded = tms.id === tms2.id? true : false
     
               if(!founded){
@@ -108,7 +112,7 @@ function add(req, res) {
             }
           }
           if(indLeg === leagues.length-1){
-            console.log("va a guardar9")
+            console.log("va a guardar13")
             let teams = [ cnt ]
             res.send({status: true, mensaje: "Se Guardo Correctamente",teams});
           }
