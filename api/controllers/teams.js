@@ -89,6 +89,7 @@ function add(req, res) {
         // Match.deleteMany({})
         console.log("va a guardar9")
         for(let indLeg = 0; indLeg < leagues.length; indLeg++){
+          console.log("va a guardar92")
           let newTeams = teams.filter( (tms) => tms.league === leagues[indLeg]._id )
           console.log("va a guardar10")
           for(let indTms = 0; indTms < newTeams.length; indTms++){
