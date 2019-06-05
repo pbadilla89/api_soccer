@@ -17,7 +17,7 @@ exports.midValidarToken = function(req,res,next){
 
     try{
       
-      var token = req.headers.auth.replace(/['"]+/g,'');
+      var token = req.headers.token.replace(/['"]+/g,'');
       var validate = jwt.decode(token,secret);
 
       if(validate.exp > moment().unix()){

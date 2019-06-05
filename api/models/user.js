@@ -9,7 +9,11 @@ var UserSchema = schema({
   lastname: String,
   email: String,
   password: String,
-  role: String
-});
+  role: String,
+  teams: [{
+    type: schema.ObjectId,
+    ref: 'Team'
+  }]
+})
 
-module.exports = mongoose.model('User',UserSchema);
+module.exports = mongoose.model('User',UserSchema)
