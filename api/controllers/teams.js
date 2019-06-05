@@ -91,7 +91,7 @@ function add(req, res) {
         for(let indLeg = 0; indLeg < leagues.length; indLeg++){
           console.log("va a guardar92",teams)
           console.log("va a guardar93",leagues[indLeg]["_id"])
-          let newTeams = teams.filter( (tms) => tms.league === leagues[indLeg]["_id"] )
+          let newTeams = teams.filter( tms => tms.league === leagues[indLeg]["_id"] )
           console.log("va a guardar10", newTeams)
           for(let indTms = 0; indTms < newTeams.length; indTms++){
             let tms = newTeams[indTms]
