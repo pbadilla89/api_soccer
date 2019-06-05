@@ -102,7 +102,7 @@ function add(req, res) {
               console.log("va a guardar12")
               let founded = tms._id === tms2._id? true : false
 
-              console.log("va a guardar12-2")
+              console.log("va a guardar12-2",founded)
     
               if(!founded){
                 let matches2 = new Match()
