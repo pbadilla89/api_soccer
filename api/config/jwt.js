@@ -11,6 +11,7 @@ exports.createToken = function(user){
 }
 
 exports.midValidarToken = function(req,res,next){
+  console.log(req.headers)
   if(!req.headers.token){
     return res.send({status: false, message: "no tiene token de AUTH"});
   } else {
