@@ -50,7 +50,7 @@ function playMatch(req, res){
 
   const match2 = {
     name: match.name,
-    win: match[match.win]._id,
+    win: match.win != "-1" && match.win != "0" ? match[match.win]._id : match.win,
     idHome: match.idHome._id,
     idAway: match.idAway._id,
     league: match.league._id
