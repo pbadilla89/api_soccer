@@ -14,27 +14,27 @@ var md_auth = require("./jwt")
 
 var api = express.Router()
 
-api.post('/addUser',UserController.add)
-api.post('/removeUser',UserController.remove)
-api.post('/listUsers',UserController.list)
+api.post('/addUser', UserController.add)
+api.post('/removeUser', md_auth.midValidarToken, UserController.remove)
+api.post('/listUsers', md_auth.midValidarToken, UserController.list)
 
-api.post('/addCountry',CountryController.add)
-api.post('/removeCountry',CountryController.remove)
-api.post('/listCountries',CountryController.list)
+api.post('/addCountry', md_auth.midValidarToken, CountryController.add)
+api.post('/removeCountry', md_auth.midValidarToken, CountryController.remove)
+api.post('/listCountries', md_auth.midValidarToken, CountryController.list)
 
-api.post('/addLeague',LeagueController.add)
-api.post('/removeLeague',LeagueController.remove)
-api.post('/listLeagues',md_auth.midValidarToken,LeagueController.list)
+api.post('/addLeague', md_auth.midValidarToken, LeagueController.add)
+api.post('/removeLeague', md_auth.midValidarToken, LeagueController.remove)
+api.post('/listLeagues', md_auth.midValidarToken, LeagueController.list)
 
-api.post('/addTeam',TeamController.add)
-api.post('/removeTeam',TeamController.remove)
-api.post('/listTeams',TeamController.list)
+api.post('/addTeam', md_auth.midValidarToken, TeamController.add)
+api.post('/removeTeam', md_auth.midValidarToken, TeamController.remove)
+api.post('/listTeams', md_auth.midValidarToken, TeamController.list)
 
-api.post('/addMatch',MatchController.add)
-api.post('/listMatches',MatchController.list)
-api.post('/playMatch',MatchController.playMatch)
+api.post('/addMatch', md_auth.midValidarToken, MatchController.add)
+api.post('/listMatches', md_auth.midValidarToken, MatchController.list)
+api.post('/playMatch', md_auth.midValidarToken, MatchController.playMatch)
 
-api.post('/refreshMatch',TeamController.refresh)
+api.post('/refreshMatch', md_auth.midValidarToken, TeamController.refresh)
 
 api.post('/loginUser',UserController.login)
 api.post('/validateSession',UserController.validateSession)
