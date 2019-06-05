@@ -11,8 +11,8 @@ exports.createToken = function(user){
 }
 
 exports.midValidarToken = function(req,res,next){
-  if(!req.headers.auth){
-    return res.send({message: "no tiene token de AUTH"});
+  if(!req.headers.token){
+    return res.send({status: false, message: "no tiene token de AUTH"});
   } else {
 
     try{
@@ -21,11 +21,11 @@ exports.midValidarToken = function(req,res,next){
       var validate = jwt.decode(token,secret);
 
       if(validate.exp > moment().unix()){
-        return res.send({message: "cuek"});
+        return res.send({status: false, message: "cuek"});
       }
       req.user = validate;
     } catch(e){
-      return res.send({message: "cuek"});
+      return res.send({status: false, message: "cuek"});
     }
 
     next()
