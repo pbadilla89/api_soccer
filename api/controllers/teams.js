@@ -89,7 +89,7 @@ function add(req, res) {
         // Match.deleteMany({})
         console.log("va a guardar9")
         for(let indLeg = 0; indLeg < leagues.length; indLeg++){
-          let newTeams = teams.filter( (tms) => tms.league === leagues[indLeg].id )
+          let newTeams = teams.filter( (tms) => tms.league === leagues[indLeg]._id )
           console.log("va a guardar10")
           for(let indTms = 0; indTms < newTeams.length; indTms++){
             let tms = newTeams[indTms]
@@ -97,7 +97,7 @@ function add(req, res) {
             for(let indTms2 = 0; indTms2 < newTeams.length; indTms2++){
               let tms2 = newTeams[indTms2]
               console.log("va a guardar12")
-              let founded = tms.id === tms2.id? true : false
+              let founded = tms._id === tms2._id? true : false
     
               if(!founded){
                 let matches2 = new Match()
