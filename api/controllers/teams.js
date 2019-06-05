@@ -131,11 +131,11 @@ function myFilter(array, cross, valid){
     const ary = array[indAry]
 
     console.log(cross)
-    console.log(typeof ary[cross])
-    console.log(ary[cross] == valid)
-    console.log(typeof valid)
+    console.log(typeof String(ary[cross]))
+    console.log(String(ary[cross]) == String(valid))
+    console.log(typeof String(valid))
 
-    if(ary[cross] == valid){
+    if(String(ary[cross]) == String(valid)){
       newArray.push(ary[cross])
     }
   }
