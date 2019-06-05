@@ -131,9 +131,9 @@ function myFilter(array, cross, valid){
     const ary = array[indAry]
 
     console.log(cross)
-    console.log(ary[cross])
+    console.log(typeof ary[cross])
     console.log(ary[cross] == valid)
-    console.log(valid)
+    console.log(typeof valid)
 
     if(ary[cross] == valid){
       newArray.push(ary[cross])
