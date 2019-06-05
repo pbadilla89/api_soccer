@@ -45,16 +45,35 @@ function add(req, res) {
 
   team.save((err2, cnt) => {
     if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
-
-    console.log("va a guardar2")
     
-    League.find({}).
+    refreshMatch(res)
+  })
+}
+
+function update (req, res){
+  var id = req.params.id;
+  var update = req.body;
+
+  Team.findByIdAndUpdate(id,update, (err, userUpload) => {
+    res.send({editado: true});
+  })
+}
+
+function remove (req, res){
+  var id = req.body._id;
+
+  Team.findByIdAndRemove(id, (err, userUpload) => {
+    res.send({eliminado: true});
+  })
+}
+
+
+function refreshMatch(res){
+  League.find({}).
     exec((err, leagues) => {
       if(err){
         res.send({datos: "error"});
       }
-
-      console.log("va a guardar3")
 
       Team.find({}).
       exec((err, teams) => {
@@ -62,10 +81,7 @@ function add(req, res) {
           res.send({datos: "error"});
         }
 
-        console.log("va a guardar5")
-
         teams.map( ( tms, indTms ) => {
-          console.log("va a guardar6")
           
           const id = tms._id
 
@@ -80,13 +96,9 @@ function add(req, res) {
               pp: 0
           }
 
-          Team.findByIdAndUpdate(id,newTms, (err, userUpload) => {
-            console.log("va a guardar7")
-          })
-          console.log("va a guardar8")
+          Team.findByIdAndUpdate(id,newTms, (err, userUpload) => {})
       })
 
-        // Match.deleteMany({})
         Match.deleteMany({ }, (err,mth) => {
         
           for(let indLeg = 0; indLeg < leagues.length; indLeg++){
@@ -117,28 +129,12 @@ function add(req, res) {
               res.send({status: true, mensaje: "Se Guardo Correctamente",teams});
             }
           }
-        });
-      });
-    });
-  });
+        })
+      })
+    })
 }
 
-function update (req, res){
-  var id = req.params.id;
-  var update = req.body;
 
-  Team.findByIdAndUpdate(id,update, (err, userUpload) => {
-    res.send({editado: true});
-  })
-}
-
-function remove (req, res){
-  var id = req.body._id;
-
-  Team.findByIdAndRemove(id, (err, userUpload) => {
-    res.send({eliminado: true});
-  })
-}
 
 module.exports = {
   add,
