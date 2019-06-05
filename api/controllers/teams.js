@@ -64,7 +64,7 @@ function add(req, res) {
 
         console.log("va a guardar5")
 
-        teams = teams.map( ( tms, indTms ) => {
+        teams.map( ( tms, indTms ) => {
           console.log("va a guardar6")
           
           const id = tms._id
