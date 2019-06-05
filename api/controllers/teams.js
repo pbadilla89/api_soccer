@@ -67,6 +67,10 @@ function remove (req, res){
   })
 }
 
+function refresh(req, res) {
+    
+    refreshMatch(res, {})
+}
 
 function refreshMatch(res, cnt){
   League.find({}).
@@ -140,5 +144,6 @@ module.exports = {
   add,
   update,
   list,
-  remove
+  remove,
+  refresh
 }
