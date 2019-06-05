@@ -68,6 +68,8 @@ function playMatch(req, res){
     }
 
     console.log("*******************")
+    console.log(match.win)
+    console.log("*******************")
     console.log(match.idHome._id)
     console.log("*******************")
     console.log(match.idHome)
