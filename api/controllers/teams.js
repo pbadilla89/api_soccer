@@ -46,7 +46,7 @@ function add(req, res) {
   team.save((err2, cnt) => {
     if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
     
-    refreshMatch(res)
+    refreshMatch(res, cnt)
   })
 }
 
@@ -68,7 +68,7 @@ function remove (req, res){
 }
 
 
-function refreshMatch(res){
+function refreshMatch(res, cnt){
   League.find({}).
     exec((err, leagues) => {
       if(err){
