@@ -132,6 +132,7 @@ function myFilter(array, cross, valid){
 
     console.log(cross)
     console.log(ary[cross])
+    console.log(ary[cross] == valid)
     console.log(valid)
 
     if(ary[cross] == valid){
