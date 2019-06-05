@@ -32,6 +32,7 @@ api.post('/listTeams',TeamController.list)
 
 api.post('/addMatch',MatchController.add)
 api.post('/listMatches',MatchController.list)
+api.post('/playMatch',MatchController.playMatch)
 
 api.post('/loginUser',UserController.login)
 api.post('/validateSession',UserController.validateSession)

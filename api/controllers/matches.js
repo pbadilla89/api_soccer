@@ -43,6 +43,17 @@ function list(req, res) {
     });
   });
 }
+
+function playMatch(req, res){
+
+  const { match } = req.body
+
+  console.log(match)
+
+  res.send({status: true, mensaje: "Se Guardo Correctamente"});
+}
+
+
 function add(req, res) {
   Match.remove({})
   var matches = new Match()
@@ -65,5 +76,6 @@ function add(req, res) {
 
 module.exports = {
   add,
-  list
+  list,
+  playMatch
 }
