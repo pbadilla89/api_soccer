@@ -11,30 +11,26 @@ function list(req, res) {
     res.send({countries})
   });
 }
-function add(req, res) {
-  var country = new Country()
+function save(req, res) {
   var params = req.body
 
-  country.name = params.name
-
-  country.save((err2, cnt) => {
-    if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
-    console.log("guardo")
-    let countries = [ cnt ]
-    res.send({status: true, mensaje: "Se Guardo Correctamente",countries});
-  });
-}
-
-function update (req, res){
-  const _id = req.body._id
-  const update = {
-    name: req.body.name
+  if( typeof params._id != "undefined" ){
+    const update = {
+      name: params.name
+    }
+    Country.findByIdAndUpdate(params._id,update, (err, userUpload) => {
+      res.send({editado: true})
+    })
+  } else {
+    let country = new Country()
+    country.name = params.name
+    country.save((err2, cnt) => {
+      if ( err2 ) res.send({status: false, mensaje: "Se genero un error"});
+      console.log("guardo")
+      let countries = [ cnt ]
+      res.send({status: true, mensaje: "Se Guardo Correctamente",countries});
+    });
   }
-
-
-  Country.findByIdAndUpdate(_id,update, (err, userUpload) => {
-    res.send({editado: true})
-  })
 }
 
 function remove (req, res){
@@ -46,8 +42,7 @@ function remove (req, res){
 }
 
 module.exports = {
-  add,
-  update,
+  save,
   list,
   remove
 }
