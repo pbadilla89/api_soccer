@@ -20,6 +20,7 @@ api.post('/listUsers', md_auth.midValidarToken, UserController.list)
 
 api.post('/addCountry', md_auth.midValidarToken, CountryController.add)
 api.post('/removeCountry', md_auth.midValidarToken, CountryController.remove)
+api.post('/updateCountry', md_auth.midValidarToken, CountryController.update)
 api.post('/listCountries', md_auth.midValidarToken, CountryController.list)
 
 api.post('/addLeague', md_auth.midValidarToken, LeagueController.add)

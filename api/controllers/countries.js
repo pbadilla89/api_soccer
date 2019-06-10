@@ -26,18 +26,21 @@ function add(req, res) {
 }
 
 function update (req, res){
-  var id = req.params.id;
-  var update = req.body;
+  const _id = req.body._id
+  const update = {
+    name = req.body.name
+  }
 
-  Country.findByIdAndUpdate(id,update, (err, userUpload) => {
+
+  Country.findByIdAndUpdate(_id,update, (err, userUpload) => {
     res.send({editado: true});
   })
 }
 
 function remove (req, res){
-  var id = req.body._id;
+  var _id = req.body._id;
 
-  Country.findByIdAndRemove(id, (err, userUpload) => {
+  Country.findByIdAndRemove(_id, (err, userUpload) => {
     res.send({eliminado: true});
   })
 }
