@@ -14,8 +14,6 @@ function list(req, res) {
 function save(req, res) {
   var params = req.body
 
-  console.log(params)
-
   if( typeof params._id != "undefined" ){
     const update = {
       name: params.name
