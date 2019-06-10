@@ -28,17 +28,17 @@ function add(req, res) {
 function update (req, res){
   const _id = req.body._id
   const update = {
-    name = req.body.name
+    name: req.body.name
   }
 
 
   Country.findByIdAndUpdate(_id,update, (err, userUpload) => {
-    res.send({editado: true});
+    res.send({editado: true})
   })
 }
 
 function remove (req, res){
-  var _id = req.body._id;
+  var _id = req.body._id
 
   Country.findByIdAndRemove(_id, (err, userUpload) => {
     res.send({eliminado: true});
