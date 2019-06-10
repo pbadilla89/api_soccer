@@ -18,11 +18,11 @@ api.post('/addUser', UserController.add)
 api.post('/removeUser', md_auth.midValidarToken, UserController.remove)
 api.post('/listUsers', md_auth.midValidarToken, UserController.list)
 
-api.post('/addCountry', md_auth.midValidarToken, CountryController.add)
+api.post('/saveCountry', md_auth.midValidarToken, CountryController.save)
 api.post('/removeCountry', md_auth.midValidarToken, CountryController.remove)
 api.post('/listCountries', md_auth.midValidarToken, CountryController.list)
 
-api.post('/saveLeague', md_auth.midValidarToken, LeagueController.save)
+api.post('/addLeague', md_auth.midValidarToken, LeagueController.add)
 api.post('/removeLeague', md_auth.midValidarToken, LeagueController.remove)
 api.post('/listLeagues', md_auth.midValidarToken, LeagueController.list)
 
