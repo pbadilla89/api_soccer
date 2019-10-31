@@ -17,7 +17,7 @@
     "express": "4.16.2",
     "jwt-simple": "0.5.1",
     "moment": "2.21.0",
-    "mongoose": "5.0.9",
+    "mongoose": "5.7.7",
     "msexcel-builder": "0.0.2",
     "nodemailer": "5.1.1",
     "read-excel-file": "2.0.10",
